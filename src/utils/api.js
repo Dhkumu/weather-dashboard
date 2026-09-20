@@ -1,3 +1,7 @@
+export function celsiusToFahrenheit(celsius) {
+  return celsius * (9 / 5) + 32;
+}
+
 // Open-Meteo is free and needs no API key/signup, unlike OpenWeatherMap.
 const GEOCODE_URL = "https://geocoding-api.open-meteo.com/v1/search";
 const FORECAST_URL = "https://api.open-meteo.com/v1/forecast";

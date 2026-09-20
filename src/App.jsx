@@ -16,6 +16,8 @@ function App() {
     return saved ? JSON.parse(saved) : [];
   });
 
+  const [unit, setUnit] = useState("C");
+
   useEffect(() => {
     localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
   }, [history]);
@@ -28,6 +30,10 @@ function App() {
     });
   }
 
+  function toggleUnit() {
+    setUnit((u) => (u === "C" ? "F" : "C"));
+  }
+
   return (
     <div>
       <h1>Weather Dashboard</h1>
@@ -37,7 +43,9 @@ function App() {
 
       {status === "loading" && <LoadingSpinner />}
       {status === "error" && <ErrorMessage message={error} />}
-      {status === "success" && data && <WeatherCard data={data} />}
+      {status === "success" && data && (
+        <WeatherCard data={data} unit={unit} onToggleUnit={toggleUnit} />
+      )}
     </div>
   );
 }
