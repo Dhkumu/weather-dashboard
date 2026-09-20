@@ -1,38 +1,21 @@
-import { useState } from "react";
 import { useWeather } from "./hooks/useWeather";
+import SearchBar from "./components/SearchBar";
+import LoadingSpinner from "./components/LoadingSpinner";
+import ErrorMessage from "./components/ErrorMessage";
+import WeatherCard from "./components/WeatherCard";
 
 function App() {
-  const [cityInput, setCityInput] = useState("");
   const { data, status, error, search } = useWeather();
-
-  function handleSubmit(e) {
-    e.preventDefault(); // stops the page from reloading, which forms do by default
-    search(cityInput);
-  }
 
   return (
     <div>
       <h1>Weather Dashboard</h1>
 
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={cityInput}
-          onChange={(e) => setCityInput(e.target.value)}
-          placeholder="Search a city..."
-        />
-        <button type="submit">Search</button>
-      </form>
+      <SearchBar onSearch={search} />
 
-      {status === "loading" && <p>Loading...</p>}
-      {status === "error" && <p>Error: {error}</p>}
-      {status === "success" && data && (
-        <div>
-          <h2>{data.place.name}, {data.place.country}</h2>
-          <p>{data.temperature}°C</p>
-          <p>Humidity: {data.humidity}%</p>
-        </div>
-      )}
+      {status === "loading" && <LoadingSpinner />}
+      {status === "error" && <ErrorMessage message={error} />}
+      {status === "success" && data && <WeatherCard data={data} />}
     </div>
   );
 }
