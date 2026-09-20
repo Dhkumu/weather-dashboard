@@ -35,7 +35,7 @@ export async function geocodeCity(cityName) {
 
 // Given coordinates, fetches current weather.
 export async function fetchWeather(latitude, longitude) {
-  const url = `${FORECAST_URL}?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m`;
+  const url = `${FORECAST_URL}?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,precipitation`;
   const res = await fetch(url);
   const data = await res.json();
 
@@ -43,6 +43,7 @@ export async function fetchWeather(latitude, longitude) {
     temperature: data.current.temperature_2m,
     humidity: data.current.relative_humidity_2m,
     windSpeed: data.current.wind_speed_10m,
+    precipitation: data.current.precipitation,
     weatherCode: data.current.weather_code,
   };
 }

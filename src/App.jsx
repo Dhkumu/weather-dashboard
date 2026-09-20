@@ -29,7 +29,7 @@ function App() {
   }
 
   return (
-    <div>git add <div className=""></div>
+    <div>
       <h1>Weather Dashboard</h1>
 
       <SearchBar onSearch={handleSearch} />
