@@ -1,5 +1,5 @@
 # Weather Dashboard
-
+**Live demo:** [weather-dashboard-plum-ten.vercel.app](https://weather-dashboard-plum-ten.vercel.app)
 A single-page React app for looking up the current weather and a 5-day
 forecast for any city, with search history, a C/F toggle, and a
 "use my location" button.
