@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function SearchBar({ onSearch }) {
+export default function SearchBar({ onSearch, onLocate }) {
   const [value, setValue] = useState("");
 
   function handleSubmit(e) {
@@ -17,6 +17,7 @@ export default function SearchBar({ onSearch }) {
         placeholder="Search a city..."
       />
       <button type="submit">Search</button>
+      <button type="button" onClick={onLocate}>📍</button>
     </form>
   );
 }
